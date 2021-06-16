@@ -1,0 +1,35 @@
+{
+  "name": "prisma-postgres",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "npx prisma migrate --schema ./src/http/get-index/prisma/schema.prisma",
+    "generate": "npx prisma generate --schema ./src/http/get-index/prisma/schema.prisma",
+    "db push": "npx prisma generate --schema ./src/http/get-index/prisma/schema.prisma",
+    "introspect": "npx prisma introspect --schema ./src/http/get-index/prisma/schema.prisma",
+    "build": "npm run generate",
+    "start": "npx arc sandbox"
+  },
+  "author": "Ryan Bethel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/begin-examples/prisma-postgres/issues"
+  },
+  "homepage": "https://github.com/begin-examples/prisma-postgres#readme",
+  "devDependencies": {
+    "@architect/eslint-config": "^1.0.0",
+    "@architect/sandbox": "^3.6.0",
+    "@prisma/client": "^2.24.1",
+    "eslint": "^7.28.0",
+    "prisma": "^2.24.1"
+  },
+  "dependencies": {
+    "@architect/functions": "^3.14.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@architect/eslint-config"
+    ]
+  }
+}

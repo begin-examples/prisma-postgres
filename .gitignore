@@ -7,4 +7,4 @@ preferences.arc
 .arc-env
 sam.json
 sam.yaml
-.env
+**/generated
