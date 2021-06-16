@@ -8,7 +8,8 @@
     "generate": "npx prisma generate --schema ./src/http/get-index/prisma/schema.prisma",
     "db push": "npx prisma generate --schema ./src/http/get-index/prisma/schema.prisma",
     "introspect": "npx prisma introspect --schema ./src/http/get-index/prisma/schema.prisma",
-    "build": "npm run generate",
+    "verify:schema": "npx prisma verify --schema ./src/http/get-index/prisma/schema.prisma",
+    "build": "npm run verify:schema && npm run generate",
     "start": "npx arc sandbox"
   },
   "author": "Ryan Bethel",
