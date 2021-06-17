@@ -36,7 +36,7 @@ jobs:
       - name: Install Test Dependencies
         run: npm i tape tap-spec tiny-json-http @architect/sandbox
       - name: Build Prisma Client
-        run: npm run generate && npm run db push
+        run: npm run generate && npm run db-push
 
       - name: Seed Prisma
         run: node .github/workflows/seed-db.js
