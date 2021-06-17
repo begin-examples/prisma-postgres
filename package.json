@@ -6,8 +6,8 @@
   "scripts": {
     "migrate": "npx prisma migrate --schema ./src/http/get-index/prisma/schema.prisma",
     "generate": "npx prisma generate --schema ./src/http/get-index/prisma/schema.prisma",
-    "db push": "npx prisma db push --schema ./src/http/get-index/prisma/schema.prisma",
-    "db pull": "npx prisma db pull --schema ./src/http/get-index/prisma/schema.prisma",
+    "db-push": "npx prisma db push --schema ./src/http/get-index/prisma/schema.prisma",
+    "db-pull": "npx prisma db pull --schema ./src/http/get-index/prisma/schema.prisma",
     "format:schema": "npx prisma format --schema ./src/http/get-index/prisma/schema.prisma",
     "build": "npm run format:schema && npm run generate",
     "start": "npx arc sandbox"

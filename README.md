@@ -14,7 +14,7 @@ To deploy to staging on Begin set environment variables for your hosted Database
 **For local testing point to a hosted testing database by setting environment variable for `DATABASE_URL` in the `.env` file.** See the example in `.env.example` for reference. This is a departure from most Begin apps because the Prisma CLI specifically looks for the `.env` file. To start the sandbox run `npm start`. 
 
 ## Prisma Schema Management
-Prisma CLI has many utilities for managing schema changes. For instance in this example `npm run db pull` will introspect the hosted database and update the local schema file to match it. These utilities are powerful, but they can also lead to lost data if used incorrectly (i.e. `npm run db push` will change the database schema to match the local schema file). Review Prisma documentation for specifics.
+Prisma CLI has many utilities for managing schema changes. For instance in this example `npm run db-pull` will introspect the hosted database and update the local schema file to match it. These utilities are powerful, but they can also lead to lost data if used incorrectly (i.e. `npm run db-push` will change the database schema to match the local schema file). Review Prisma documentation for specifics.
 
 ## Managing Connections
 Postgres and most other relational databases have a limit to the number of open connections they can support. Since your serverless application can scale up quickly it is possible overload those connections. There are several approaches to managing this:

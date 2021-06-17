@@ -1,4 +1,4 @@
-name: PostgreSQL Tests
+name: Prisma Tests
 on:
   push:
   workflow_dispatch:
