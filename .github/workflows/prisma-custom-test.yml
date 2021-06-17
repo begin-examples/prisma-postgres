@@ -1,0 +1,59 @@
+name: PostgreSQL Tests
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  postgres-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+        # volumes:
+        #   - "scripts/seed-database.sql:/docker-entrypoint-initdb.d/init.sql"
+        #   #- ".github/workflows/seed-database.sql:/docker-entrypoint-initdb.d/init.sql"
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Test Dependencies
+        run: npm i tape tap-spec tiny-json-http @architect/sandbox
+      - name: Build Prisma Client
+        run: npm run generate && npm run db push
+
+      - name: Seed Prisma
+        run: node .github/workflows/seed-db.js
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+
+      - name: Run Sandbox Tests
+        run: QUIET=1 npx tape .github/workflows/prisma-custom-test.js | npx tap-spec
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+
+      - name: Notify
+        uses: homoluctus/slatify@master
+        if: github.ref == 'refs/heads/main' && failure()
+        with:
+          type: ${{ job.status }}
+          job_name: "*postgres custom test*"
+          url: ${{ secrets.BX_SLACK_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
