@@ -1,4 +1,4 @@
-## Begin Prisma Example
+# Begin Prisma Example
 This example demonstrates a simple query to an externally hosted Postgres Database using the [Prisma](https://www.prisma.io/) client. 
 
 ## Deploy your own
