@@ -1,4 +1,4 @@
-let { PrismaClient } = require('src/http/get-index/prisma/generated/client')
+let { PrismaClient } = require('../../src/http/get-index/prisma/generated/client')
 let prisma = new PrismaClient()
 
 
