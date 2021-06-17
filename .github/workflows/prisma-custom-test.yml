@@ -37,6 +37,8 @@ jobs:
         run: npm i tape tap-spec tiny-json-http @architect/sandbox
       - name: Build Prisma Client
         run: npm run generate && npm run db-push
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
 
       - name: Seed Prisma
         run: node .github/workflows/seed-db.js
